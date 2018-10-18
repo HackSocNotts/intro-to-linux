@@ -47,6 +47,8 @@ You can change your current working directory by using the `cd` command, followe
 
 ### File manipulation
 
+**Before starting, make sure you're in the home directory: `cd ~`**
+
 There are a number of commands in Linux that you can use to manipulate files and the file system, allowing you to create, edit and delete files at will.
 
 The first command we'll look at is the `mkdir` command - this is shorthand for "make directory", and allows you to create directories. As an example of how to do this, let's make a directory with your name. Your command might look like this:
@@ -85,11 +87,50 @@ mv [source] [destination]
 cp [source] [destination]
 ```
 
-For example, typing `mv about-me ~` will move the file `about-me` to your home directory.
+For example, typing `mv about-me ~` will move the file `about-me` to your home directory. For now, let's go back to our home directory: `cd ~`
 
+Finally, you can delete files and directories using the `rm` command. If you want to delete a file, just use `rm` on its own:
 
+`rm about-me`
+
+If you want to delete a directory, you need to add the `-r` flag to `rm` (which means _recursive_ - a fancy way of saying "delete this folder and everything inside of it"):
+
+`rm -r Toby`
+
+You can also download files using the `wget` command - let's use this to _literally download the entire works of Shakespeare_:
+
+```
+wget https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt -O shakespeare.txt
+```
+
+This downloads the file in the link, and the -O option tells `wget` to save the file as "shakespeare.txt" in the current working directory. We'll use this later.
 
 ### Pipes and redirection
+
+**Before starting, make sure you're in the home directory: `cd ~`**
+
+It's important to know what standard streams are in Linux, as we'll be manipulating them later. Standard streams can be thought of as "pipes" - Linux can connect them to a program, and that program can read and write data to them. There's a couple of important ones that are useful in the context of this session:
+
+- Standard output (also known as `stdout`): this is used for programs to output text to the screen.
+- Standard input (also known as `stdin`): this is used for programs to read text that the user types in.
+
+You can redirect these streams to other programs; for example, you can take the output of `cat`, and redirect it to another program.
+
+One program that is useful for this is `grep` - this allows us to search for text inside files. For example, we can use the `grep` command to find all the instances of "Hamlet" inside the Shakespeare file:
+
+```
+cat shakespeare.txt | grep "Hamlet"
+```
+
+The `|` symbol _pipes_ the **output** of the `cat` command to the **input** of the `grep` command, which searches for all lines of text containing "Hamlet" on its input.
+
+You can also chain these together. For example, we can add the `wc` command on the end - this allows us to see how many lines in the file contain the word Hamlet. That command would look like this:
+
+```
+cat shakespeare.txt | grep "Hamlet" | wc -l
+```
+
+This takes the **output** of `grep` and _pipes_ it to the **input** of the `wc` command.
 
 ### System administration
 
