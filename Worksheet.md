@@ -134,4 +134,24 @@ This takes the **output** of `grep` and _pipes_ it to the **input** of the `wc` 
 
 ### System administration
 
+There are many tools you can use in Linux to keep on top of your computer.
+
+The first tool we'll look at is `man` - these are "manual pages" (also referred to as manpages), and they provide explanation of the commands in Linux and all of the different things you can do with them. Once you're looking at a manpage, you can use the arrow keys on your keyboard to scroll through the document, and press the `Q` key on your keyboard to exit.
+
+Another tool that's useful is `ps` - this is a tool that shows us all of the running programs (called processes) on our computer. Typing `ps -e` will show all running programs on the computer in a list. You can also use `pstree` to show the process tree - processes in Linux can start other processes, and these are referred to as _child processes_. `pstree` will show all processes and their children in a tree diagram.
+
+You can use the `kill` command to stop programs from running - use this carefully, as you can cause your computer to crash by killing the wrong process. You'll notice that the output of `ps` contains a list of numbers; these are called _process IDs_. You can give these to `kill` to specify which process you want to kill. For example, typing `kill 9374` will kill the process with the ID for 9374.
+
+A nicer way of looking at the programs running on your computer is by using a tool called `top` - this shows you a list of running processes, as well as the resources they are using. Typing `top` on its own is enough - to exit, press the `Q` key on your computer.
+
+If you're not sure which user account you're logged in as, you can use `whoami` to find out. Typing this on its own will tell you which user you're currently logged in as.
+
+In Linux, there is a default user called `root` which has permission to make any changes it wants to the system. If you want to run a command as `root`, you can use the `sudo` command, followed by the command you wanted to run anyway. For example, the `apt-get` command won't work if you're logged in as a standard user; you'd need to put `sudo` in front of your command to make it work:
+
+```
+sudo apt-get [...]
+```
+
+You can also use the `which` command to find the location of any program installed in your system - for example, typing `which ls` will tell you where `ls` is installed on your computer.
+
 ### Debian package manager (`apt`)
