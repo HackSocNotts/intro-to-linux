@@ -146,10 +146,10 @@ A nicer way of looking at the programs running on your computer is by using a to
 
 If you're not sure which user account you're logged in as, you can use `whoami` to find out. Typing this on its own will tell you which user you're currently logged in as.
 
-In Linux, there is a default user called `root` which has permission to make any changes it wants to the system. If you want to run a command as `root`, you can use the `sudo` command, followed by the command you wanted to run anyway. For example, the `apt-get` command won't work if you're logged in as a standard user; you'd need to put `sudo` in front of your command to make it work:
+In Linux, there is a default user called `root` which has permission to make any changes it wants to the system. If you want to run a command as `root`, you can use the `sudo` command, followed by the command you wanted to run anyway. For example, the `apt` command won't work if you're logged in as a standard user; you'd need to put `sudo` in front of your command to make it work:
 
 ```
-sudo apt-get [...]
+sudo apt [...]
 ```
 
 You can also use the `which` command to find the location of any program installed in your system - for example, typing `which ls` will tell you where `ls` is installed on your computer.
@@ -160,8 +160,8 @@ You can also use the `which` command to find the location of any program install
 
 Firstly, it's important to know what a Linux distribution is and what it means. A distribution is a "flavour" of Linux tailored to a particular purpose - they are also often referred to as "distros". A popular Linux distro exists called Debian - this is a very simple general purpose distribution, and lots of people base their distributions on top of this.
 
-One popular feature of Debian is its package manager - this is called `apt`. Using `apt` (or `apt-get`), you can install new software (called packages) from the command line, handling the download and installation for you. `apt` fetches software from _repositories_ - these are effectively just Web sites filled with lists of software that your computer can use to look for the software you want. Debian distributions come with a set of default repositories, which is good enough for most people, but you can add more to expand the list of software you can install.
+One popular feature of Debian is its package manager - this is called `apt`. Using `apt`, you can install new software (called packages) from the command line, handling the download and installation for you. `apt` fetches software from _repositories_ - these are effectively just Web sites filled with lists of software that your computer can use to look for the software you want. Debian distributions come with a set of default repositories, which is good enough for most people, but you can add more to expand the list of software you can install.
 
-You use the `apt-get` command to install software - as an example, if you wanted to install the `tree` command on your computer, you would type `apt-get install tree`. This will automatically download and install the `tree` package for you.
+You use the `apt` command to install software - as an example, if you wanted to install the `tree` command on your computer, you would type `apt install tree`. This will automatically download and install the `tree` package for you.
 
-If you want to search for a piece of software in the repositories, you can use the `apt-cache` command. For example, if I wanted the `elinks` command, but wasn't sure what the package name is, you can use `apt-cache search elinks`. This will give you a list of all the packages that match "elinks" - you can then install that package using `apt-get install`.
+If you want to search for a piece of software in the repositories, you can use the `apt search` command. For example, if I wanted the `elinks` command, but wasn't sure what the package name is, you can use `apt search elinks`. This will give you a list of all the packages that match "elinks" - you can then install that package using `apt install`.
