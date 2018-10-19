@@ -2,7 +2,6 @@
 
 ### What we'll cover
 
-- A brief history of Linux
 - What is Linux?
 - Basic commands and traversing the file system
 - File manipulation
@@ -27,6 +26,10 @@
 
 If you need any help with this, then feel free to ask one of our mentors for help!
 
+### What is Linux?
+
+The term 'Linux' refers to the 'kernel' that the system is running. The kernel has control over the whole system, and connects the application software on a computer to the CPU, memory and input/output devices. There are [literally hundreds](https://en.wikipedia.org/wiki/List_of_Linux_distributions) of linux distributions, and many more instances of linux running on embedded devices like in-flight entertainment systems, digital billboards, and other such things. The ethos behind the Linux ecosystem is having a 'free and open source' codebase, which means that the source code is public, and anybody is free to change it and re-release it (Under a different name). 
+
 ### Basic commands and traversing file systems
 
 In Linux, everything is stored on the "file system" - a big tree of files and folders (called directories) where all of the user's files go, where all of the computer's settings are stored, et cetera. `/` is the "root" of the file system; everything in the file system is contained within this root directory.
@@ -44,7 +47,6 @@ If you want to see a list of the files in your current working directory, you ca
 ![Image showing the output of ls /](https://i.imgur.com/E0lSdYR.png)
 
 You can change your current working directory by using the `cd` command, followed by the directory you want to change to. For example, if you wanted to change your current working directory to `/`, you can do that by typing `cd /`. You can go back to your home directory by typing `cd ~` - you'll want to do this for the next section. You can also move up a directory by typing `cd ..`. Note that filenames in Linux are case-sensitive; you'll need to type them exactly as you see on your screen.
-
 ### File manipulation
 
 **Before starting, make sure you're in the home directory: `cd ~`**
@@ -134,15 +136,18 @@ This takes the **output** of `grep` and _pipes_ it to the **input** of the `wc` 
 
 ### System administration
 
-There are many tools you can use in Linux to keep on top of your computer.
+There are many tools you can use in Linux to keep on top of your computer, as well as some useful shortcuts and tricks. 
 
-The first tool we'll look at is `man` - these are "manual pages" (also referred to as manpages), and they provide explanation of the commands in Linux and all of the different things you can do with them. Once you're looking at a manpage, you can use the arrow keys on your keyboard to scroll through the document, and press the `Q` key on your keyboard to exit.
+`Ctrl + C` is a keyboard interrupt, and stops whatever process is being run on your terminal window. Adding `&` to the end of a command in a terminal will make it run in the background, letting you do other things while it's running. (You can also use `command1 && command2` if you want to run two commands one after the other). Copying and pasting in terminal windows uses `Ctrl + Shift + C/V` rather than just `Ctrl + C/V`, `clear` will clear the terminal window of all previous text, and you can use the Tab key for the terminal to attempt to autocomplete your command or the directory you want to move to.
+
+A helpful tool for commands you aren't familiar with is `man` - these are "manual pages" (also referred to as manpages), and they provide explanation of the commands in Linux and all of the different things you can do with them. Once you're looking at a manpage, you can use the arrow keys on your keyboard to scroll through the document, and press the `Q` key on your keyboard to exit. A large number of commands also offer the `command --help` option, which gives a less detailed but helpful nonetheless output.
+
+`top` is a command that provides your terminal interface with a constantly updating list of programs, organised from most demanding to least demanding, along with providing a summary of various system facts. It will tell you: 
+The time, the system uptime, how many users are logged in (Try the `who` command to see who is currently logged onto the system), the amount of tasks and whether they're running, idle or otherwise; It will also give you a listed breakdown of the processes that are using the most CPU power which can be helpful for identifying troublesome programs that are slowing down your system. You can press `Shift + F` to sort by lots of different metrics like RAM usage, uptime and so on, then select a metric, press enter, and then escape. You can exit the program by pressing 'Q' 
 
 Another tool that's useful is `ps` - this is a tool that shows us all of the running programs (called processes) on our computer. Typing `ps -e` will show all running programs on the computer in a list. You can also use `pstree` to show the process tree - processes in Linux can start other processes, and these are referred to as _child processes_. `pstree` will show all processes and their children in a tree diagram.
 
-You can use the `kill` command to stop programs from running - use this carefully, as you can cause your computer to crash by killing the wrong process. You'll notice that the output of `ps` contains a list of numbers; these are called _process IDs_. You can give these to `kill` to specify which process you want to kill. For example, typing `kill 9374` will kill the process with the ID for 9374.
-
-A nicer way of looking at the programs running on your computer is by using a tool called `top` - this shows you a list of running processes, as well as the resources they are using. Typing `top` on its own is enough - to exit, press the `Q` key on your computer.
+You can use the `kill` command to stop programs from running - use this carefully, as you can cause your computer to crash by killing the wrong process. You'll notice that the output of `ps` contains a list of numbers; these are called _process IDs_. You can give these to `kill` to specify which process you want to kill. For example, typing `kill 9374` will kill the process with the ID for 9374. Sometimes `killall (process)` is more helpful, as it can kill all of a program's subprocesses as well. `killall firefox` will terminate all of its processes, for example.
 
 If you're not sure which user account you're logged in as, you can use `whoami` to find out. Typing this on its own will tell you which user you're currently logged in as.
 
@@ -151,6 +156,7 @@ In Linux, there is a default user called `root` which has permission to make any
 ```
 sudo apt-get [...]
 ```
+Note: Be careful when using `sudo` or `su`, as with great power comes great responsibility. Make sure you understand what you're typing into the terminal as you can introduce security vulnerabilities or break your entire system.
 
 You can also use the `which` command to find the location of any program installed in your system - for example, typing `which ls` will tell you where `ls` is installed on your computer.
 
