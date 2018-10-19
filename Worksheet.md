@@ -138,7 +138,11 @@ This takes the **output** of `grep` and _pipes_ it to the **input** of the `wc` 
 
 There are many tools you can use in Linux to keep on top of your computer, as well as some useful shortcuts and tricks. 
 
-`Ctrl + C` is a keyboard interrupt, and stops whatever process is being run on your terminal window. Adding `&` to the end of a command in a terminal will make it run in the background, letting you do other things while it's running. (You can also use `command1 && command2` if you want to run two commands one after the other). Copying and pasting in terminal windows uses `Ctrl + Shift + C/V` rather than just `Ctrl + C/V`, `clear` will clear the terminal window of all previous text, and you can use the Tab key for the terminal to attempt to autocomplete your command or the directory you want to move to.
+- `Ctrl + C` is a keyboard interrupt, and stops whatever process is being run on your terminal window. 
+- Adding `&` to the end of a command in a terminal will make it run in the background, letting you do other things while it's running. (You can also use `command1 && command2` if you want to run two commands one after the other). 
+- Copying and pasting in terminal windows uses `Ctrl + Shift + C/V` rather than just `Ctrl + C/V`. 
+- `clear` will clear the terminal window of all previous text. 
+- You can use the Tab key for the terminal to attempt to autocomplete your command or the directory you want to move to.
 
 A helpful tool for commands you aren't familiar with is `man` - these are "manual pages" (also referred to as manpages), and they provide explanation of the commands in Linux and all of the different things you can do with them. Once you're looking at a manpage, you can use the arrow keys on your keyboard to scroll through the document, and press the `Q` key on your keyboard to exit. A large number of commands also offer the `command --help` option, which gives a less detailed but helpful nonetheless output.
 
