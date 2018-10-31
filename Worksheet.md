@@ -28,7 +28,7 @@ If you need any help with this, then feel free to ask one of our mentors for hel
 
 ### What is Linux?
 
-The term 'Linux' refers to the 'kernel' that the system is running. The kernel has control over the whole system, and connects the application software on a computer to the CPU, memory and input/output devices. There are [literally hundreds](https://en.wikipedia.org/wiki/List_of_Linux_distributions) of linux distributions, and many more instances of linux running on embedded devices like in-flight entertainment systems, digital billboards, and other such things. The ethos behind the Linux ecosystem is having a 'free and open source' codebase, which means that the source code is public, and anybody is free to change it and re-release it (Under a different name). 
+The term 'Linux' refers to the 'kernel' that the system is running. The kernel has control over the whole system, and connects the application software on a computer to the hardware. There are [literally hundreds](https://en.wikipedia.org/wiki/List_of_Linux_distributions) of linux distributions, and many more instances of Linux running on embedded devices like in-flight entertainment systems, digital billboards, and other such things. The ethos behind the Linux ecosystem is having a 'free and open source' codebase, which means that the source code is public, and anybody is free to change it and re-release it (Under a different name). 
 
 ### Basic commands and traversing file systems
 
@@ -138,29 +138,31 @@ This takes the **output** of `grep` and _pipes_ it to the **input** of the `wc` 
 
 There are many tools you can use in Linux to keep on top of your computer, as well as some useful shortcuts and tricks. 
 
-- `Ctrl + C` is a keyboard interrupt, and stops whatever process is being run on your terminal window. 
+- `Ctrl + C` is a keyboard interrupt, and stops whatever process is being run on your terminal window. (`Cmd + .` on Mac)
 - Adding `&` to the end of a command in a terminal will make it run in the background, letting you do other things while it's running. (You can also use `command1 && command2` if you want to run two commands one after the other). 
-- Copying and pasting in terminal windows uses `Ctrl + Shift + C/V` rather than just `Ctrl + C/V`. 
+- Copying and pasting in terminal windows uses `Ctrl + Shift + C/V` rather than just `Ctrl + C/V`. (`Cmd + C` and `Cmd + V` on Mac)
 - `clear` will clear the terminal window of all previous text. 
 - You can use the Tab key for the terminal to attempt to autocomplete your command or the directory you want to move to.
 
-A helpful tool for commands you aren't familiar with is `man` - these are "manual pages" (also referred to as manpages), and they provide explanation of the commands in Linux and all of the different things you can do with them. Once you're looking at a manpage, you can use the arrow keys on your keyboard to scroll through the document, and press the `Q` key on your keyboard to exit. A large number of commands also offer the `command --help` option, which gives a less detailed but helpful nonetheless output.
+A helpful tool for commands you aren't familiar with is `man` - these are "manual pages" (also referred to as manpages), and they provide explanation of the commands in Linux and all of the different things you can do with them. Once you're looking at a manpage, you can use the arrow keys on your keyboard to scroll through the document, and press the `Q` key on your keyboard to exit. A large number of commands also offer the `command --help` option, which gives a less detailed but nonetheless helpful output.
 
 `top` is a command that provides your terminal interface with a constantly updating list of programs, organised from most demanding to least demanding, along with providing a summary of various system facts. It will tell you: 
-The time, the system uptime, how many users are logged in (Try the `who` command to see who is currently logged onto the system), the amount of tasks and whether they're running, idle or otherwise; It will also give you a listed breakdown of the processes that are using the most CPU power which can be helpful for identifying troublesome programs that are slowing down your system. You can press `Shift + F` to sort by lots of different metrics like RAM usage, uptime and so on, then select a metric, press enter, and then escape. You can exit the program by pressing 'Q' 
+The time, the system uptime, how many users are logged in, the amount of tasks and whether they're running, idle or otherwise; It will also give you a listed breakdown of the processes that are using the most CPU power which can be helpful for identifying troublesome programs that are slowing down your system. You can press `Shift + F` to sort by lots of different metrics like memory usage, running time etc, then select a metric, press enter, and then escape. You can exit the program by pressing 'Q' 
 
 Another tool that's useful is `ps` - this is a tool that shows us all of the running programs (called processes) on our computer. Typing `ps -e` will show all running programs on the computer in a list. You can also use `pstree` to show the process tree - processes in Linux can start other processes, and these are referred to as _child processes_. `pstree` will show all processes and their children in a tree diagram.
 
-You can use the `kill` command to stop programs from running - use this carefully, as you can cause your computer to crash by killing the wrong process. You'll notice that the output of `ps` contains a list of numbers; these are called _process IDs_. You can give these to `kill` to specify which process you want to kill. For example, typing `kill 9374` will kill the process with the ID for 9374. Sometimes `killall (process)` is more helpful, as it can kill all of a program's subprocesses as well. `killall firefox` will terminate all of its processes, for example.
+You can use the `kill` command to stop programs from running - use this carefully, as you can cause your computer to crash by killing the wrong process. You'll notice that the output of `ps` contains a list of numbers; these are called _process IDs_. You can give these to `kill` to specify which process you want to kill. For example, typing `kill 9374` will kill the process with the ID for 9374. 
+
+Most of the time, however, you can get by with `killall (process)`, as it can kill all of a program's subprocesses as well, and uses the program's name rather than its ID. `killall firefox` will terminate all of its processes, for example.
 
 If you're not sure which user account you're logged in as, you can use `whoami` to find out. Typing this on its own will tell you which user you're currently logged in as.
 
-In Linux, there is a default user called `root` which has permission to make any changes it wants to the system. If you want to run a command as `root`, you can use the `sudo` command, followed by the command you wanted to run anyway. For example, the `apt-get` command won't work if you're logged in as a standard user; you'd need to put `sudo` in front of your command to make it work:
+In Linux, there is a default user called `root` which has permission to make any changes it wants to the system. If you want to run a command as `root`, you can use the `sudo` command, followed by the command you wanted to run. This handles your command as `root` and then goes back to your normal user privileges. For example, the `apt` command won't work if you're logged in as a standard user; you'd need to put `sudo` in front of your command to make it work:
 
 ```
-sudo apt-get [...]
+sudo apt [...]
 ```
-Note: Be careful when using `sudo` or `su`, as with great power comes great responsibility. Make sure you understand what you're typing into the terminal as you can introduce security vulnerabilities or break your entire system.
+Note: Be careful when using `sudo` or `su`, as with great power comes great responsibility. Make sure you understand what you're typing into the terminal as you can introduce security vulnerabilities or break your entire system. You're giving the command that you're executing permission to do anything it likes on the system, whether that's installing software or deleting important system files.
 
 You can also use the `which` command to find the location of any program installed in your system - for example, typing `which ls` will tell you where `ls` is installed on your computer.
 
@@ -172,6 +174,6 @@ Firstly, it's important to know what a Linux distribution is and what it means. 
 
 One popular feature of Debian is its package manager - this is called `apt`. Using `apt` (or `apt-get`), you can install new software (called packages) from the command line, handling the download and installation for you. `apt` fetches software from _repositories_ - these are effectively just Web sites filled with lists of software that your computer can use to look for the software you want. Debian distributions come with a set of default repositories, which is good enough for most people, but you can add more to expand the list of software you can install.
 
-You use the `apt-get` command to install software - as an example, if you wanted to install the `tree` command on your computer, you would type `apt-get install tree`. This will automatically download and install the `tree` package for you.
+You use the `apt` command to install software - as an example, if you wanted to install the `tree` command on your computer, you would type `apt install tree`. This will automatically download and install the `tree` package for you.
 
-If you want to search for a piece of software in the repositories, you can use the `apt-cache` command. For example, if I wanted the `elinks` command, but wasn't sure what the package name is, you can use `apt-cache search elinks`. This will give you a list of all the packages that match "elinks" - you can then install that package using `apt-get install`.
+If you want to search for a piece of software in the repositories, you can use the `apt-cache` command. For example, if I wanted the `elinks` command, but wasn't sure what the package name is, you can use `apt-cache search elinks`. This will give you a list of all the packages that match "elinks" - you can then install that package using `apt install`.
